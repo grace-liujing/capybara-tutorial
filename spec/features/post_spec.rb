@@ -1,20 +1,19 @@
 require 'rails_helper'
 
 RSpec.feature 'post feature', type: :feature do
-  scenario 'not create post if cancel' do
+  before (:each) do
     visit '/posts'
     click_link('New Post')
     fill_in('post_title', with: 'Grace first post')
     fill_in('post_content', with: 'I wanna be shaonainai')
+  end
+
+  scenario 'not create post if cancel' do
     click_link('Back')
     expect(page).not_to have_content('Grace first post')
   end
 
   scenario 'create new post successfully' do
-    visit '/posts'
-    click_link('New Post')
-    fill_in('post_title', with: 'Grace first post')
-    fill_in('post_content', with: 'I wanna be shaonainai')
     click_button('Create Post')
     expect(page).to have_content('Post was successfully created.')
     visit '/posts'
@@ -23,10 +22,6 @@ RSpec.feature 'post feature', type: :feature do
   end
 
   scenario 'edit post successfully' do
-    visit '/posts'
-    click_link('New Post')
-    fill_in('post_title', with: 'Grace first post')
-    fill_in('post_content', with: 'I wanna be shaonainai')
     click_button('Create Post')
     click_link('Edit')
     fill_in('post_title', with: 'Grace second post')
