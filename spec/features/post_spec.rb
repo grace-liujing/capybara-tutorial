@@ -4,8 +4,12 @@ RSpec.feature 'post feature', type: :feature do
   before (:each) do
     visit '/posts'
     click_link('New Post')
-    fill_in('post_title', with: 'Grace first post')
-    fill_in('post_content', with: 'I wanna be shaonainai')
+    fill_post('Grace first post','I wanna be shaonainai')
+  end
+
+  def fill_post(title, content)
+    fill_in('post_title', with: title)
+    fill_in('post_content', with: content)
   end
 
   scenario 'not create post if cancel' do
@@ -24,8 +28,7 @@ RSpec.feature 'post feature', type: :feature do
   scenario 'edit post successfully' do
     click_button('Create Post')
     click_link('Edit')
-    fill_in('post_title', with: 'Grace second post')
-    fill_in('post_content', with: 'I wanna be dev')
+    fill_post('Grace second post','I wanna be dev')
     click_button('Update Post')
     expect(page).to have_content('Post was successfully updated.')
   end
