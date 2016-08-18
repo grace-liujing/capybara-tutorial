@@ -17,6 +17,10 @@ module PageWithPostList
 		find('.actions input[value="Create Post"]')
 	end
 
+  def back_button
+		find('.back')
+	end
+
 	def notice_message
 		find('#notice').text
 	end
@@ -28,5 +32,17 @@ module PageWithPostList
 	define_action :fill_post do |title, content|
 		fill_in('post_title', with: title)
 		fill_in('post_content', with: content)
-	end
+  end
+
+  define_action :new_a_post do
+		find('.parent .left a[href="/posts/new"]').click
+  end
+
+  define_action :back_to_home do
+    find('.back').click
+  end
+
+  define_action :create_post do
+			find('.actions input[value="Create Post"]').click
+  end
 end
