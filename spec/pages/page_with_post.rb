@@ -1,4 +1,4 @@
-module PageWithNewPost
+module PageWithPost
   include Gizmo::PageMixin
 
   define_action :fill_post do |title, content|
@@ -12,5 +12,9 @@ module PageWithNewPost
 
   define_action :create_post do
     find('.actions input[value="Create Post"]').click
+  end
+
+  define_action :update_post do
+    find('.actions input[value="Update Post"]').click
   end
 end

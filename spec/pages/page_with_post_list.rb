@@ -14,6 +14,19 @@ module PageWithPostList
 	end
 
   define_action :new_a_post do
-		find('.parent .left a[href="/posts/new"]').click
+		find('.parent .left .new').click
   end
+
+	define_action :edit_post do
+		find('.parent .left .edit').click
+  end
+
+	define_action :destroy_post do
+		find('.parent .left .destroy').click
+  end
+
+	define_action :destroy_post do
+		find('.destroy').click
+		page.driver.browser.switch_to.alert.accept
+	end
 end
