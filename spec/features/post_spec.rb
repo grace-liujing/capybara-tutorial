@@ -17,6 +17,7 @@ RSpec.feature 'post feature', type: :feature do
         expect(page.notice_message).to eq('Post was successfully created.')
         page.perform :back_to_home
         expect(page.posts_in_list.length).to eq(1)
+        expect(page.top_10_list_item).to have_content('my first post')
     end
   end
 end
